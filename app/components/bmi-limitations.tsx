@@ -7,13 +7,26 @@ import iconPregnancy from "@/public/assets/images/icon-pregnancy.svg";
 import iconRace from "@/public/assets/images/icon-race.svg";
 import rightCurve from "@/public/assets/images/pattern-curved-line-right.svg";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 function BMILimitaion() {
-  const media = window?.matchMedia("(min-width: 600px)");
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 600px)");
+    setMatches(mediaQuery.matches);
+
+    const handleMediaChange = (e: MediaQueryListEvent) => setMatches(e.matches);
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
+    };
+  }, []);
 
   return (
     <section className="relative mx-6 my-[120px] grid grid-cols-1 grid-rows-1 gap-8 md:grid-cols-2  lg:mx-auto lg:max-w-6xl lg:grid-cols-6">
-      {media.matches && (
+      {matches && (
         <div className="absolute left-36 top-56 -z-10 lg:visible">
           <Image src={rightCurve} alt="left curve" />
         </div>
