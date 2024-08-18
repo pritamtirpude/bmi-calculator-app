@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        colorBlue: "hsl(227, 92%, 58%)",
+        gunmetal: "hsl(215, 31%, 21%)",
+        darkElectricBlue: "hsl(215, 17%, 45%)",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
