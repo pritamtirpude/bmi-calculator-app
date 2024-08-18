@@ -5,7 +5,7 @@ import leftCurve from "@/public/assets/images/pattern-curved-line-left.svg";
 import Image from "next/image";
 
 function BMIResult() {
-  const media = window.matchMedia("(min-width: 600px)");
+  const media = window?.matchMedia("(min-width: 600px)");
 
   return (
     <section className="relative mx-auto mt-16 flex max-w-6xl flex-col items-center gap-12 md:flex-row lg:mt-36 lg:gap-32 ">

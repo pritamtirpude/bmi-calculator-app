@@ -9,7 +9,7 @@ import rightCurve from "@/public/assets/images/pattern-curved-line-right.svg";
 import Image from "next/image";
 
 function BMILimitaion() {
-  const media = window.matchMedia("(min-width: 600px)");
+  const media = window?.matchMedia("(min-width: 600px)");
 
   return (
     <section className="relative mx-6 my-[120px] grid grid-cols-1 grid-rows-1 gap-8 md:grid-cols-2  lg:mx-auto lg:max-w-6xl lg:grid-cols-6">
