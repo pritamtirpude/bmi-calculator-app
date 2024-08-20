@@ -9,7 +9,7 @@ function HeroSection() {
       <div className="mt-[75px] flex items-center justify-center lg:justify-normal">
         <Image src={Logo} alt="logo" priority />
       </div>
-      <div className="mx-6 mt-7 flex flex-col items-center justify-center gap-8 lg:mx-0 lg:flex-row lg:justify-normal">
+      <div className="mx-6 mt-7 flex flex-col items-center justify-center gap-8 lg:mx-0 lg:min-h-[600px] lg:flex-row lg:justify-normal">
         <div className="max-w-none flex-1 lg:max-w-[560px]">
           <h1 className="text-center text-5xl font-semibold leading-tight lg:text-balance lg:text-start lg:text-6xl">
             Body Mass Index Calculator

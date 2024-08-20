@@ -7,22 +7,10 @@ import iconPregnancy from "@/public/assets/images/icon-pregnancy.svg";
 import iconRace from "@/public/assets/images/icon-race.svg";
 import rightCurve from "@/public/assets/images/pattern-curved-line-right.svg";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import useMediaQuery from "@/utils/useMediaQuery";
 
 function BMILimitaion() {
-  const [matches, setMatches] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 600px)");
-    setMatches(mediaQuery.matches);
-
-    const handleMediaChange = (e: MediaQueryListEvent) => setMatches(e.matches);
-    mediaQuery.addEventListener("change", handleMediaChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaChange);
-    };
-  }, []);
+  const { matches } = useMediaQuery("(min-width: 600px)");
 
   return (
     <section className="relative mx-6 my-[120px] grid grid-cols-1 grid-rows-1 gap-8 md:grid-cols-2  lg:mx-auto lg:max-w-6xl lg:grid-cols-6">
@@ -76,7 +64,7 @@ function BMILimitaion() {
         </p>
       </div>
 
-      <div className="rounded-2xl bg-white p-8 drop-shadow-2xl lg:col-start-2 lg:col-span-2 lg:row-start-3">
+      <div className="rounded-2xl bg-white p-8 drop-shadow-2xl lg:col-span-2 lg:col-start-2 lg:row-start-3">
         <div className="flex items-center gap-4">
           <Image src={iconPregnancy} alt="icon pregnancy" />
           <h6 className="text-xl font-semibold text-gunmetal">Pregnancy</h6>

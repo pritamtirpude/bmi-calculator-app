@@ -2,23 +2,11 @@
 
 import manEating from "@/public/assets/images/image-man-eating.webp";
 import leftCurve from "@/public/assets/images/pattern-curved-line-left.svg";
+import useMediaQuery from "@/utils/useMediaQuery";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 function BMIResult() {
-  const [matches, setMatches] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 600px)");
-    setMatches(mediaQuery.matches);
-
-    const handleMediaChange = (e: MediaQueryListEvent) => setMatches(e.matches);
-    mediaQuery.addEventListener("change", handleMediaChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaChange);
-    };
-  }, []);
+  const { matches } = useMediaQuery("(min-width: 600px)");
 
   return (
     <section className="relative mx-auto mt-16 flex max-w-6xl flex-col items-center gap-12 md:flex-row lg:mt-36 lg:gap-32 ">
