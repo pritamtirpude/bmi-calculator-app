@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BMI Calculator Landing Page
 
-## Getting Started
+Welcome to the BMI Calculator Landing Page project! This application is a simple, user-friendly web page that allows users to calculate their Body Mass Index (BMI) based on their height and weight.
 
-First, run the development server:
+![Screenshot 2024-08-21 202921](https://github.com/user-attachments/assets/13d6a4db-2b4f-435b-8752-47a7270aa320)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Table of Contents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The BMI Calculator is a React-based landing page designed to provide users with an easy-to-use tool for calculating their BMI. The page includes input fields for height (in feet and inches) and weight (in stones and pounds), and provides instant feedback on the user's BMI category.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Responsive Design**: The landing page is fully responsive and works on all devices.
+- **Real-time BMI Calculation**: As users input their height and weight, their BMI is calculated instantly.
+- **Simple UI/UX**: A clean and intuitive interface ensures a smooth user experience.
+- **Animated Transitions**: Using Framer Motion for smooth and engaging animations.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **React**: JavaScript library for building user interfaces.
+- **Next.js**: Framework for server-side rendered React applications.
+- **TypeScript**: Strongly typed programming language that builds on JavaScript.
+- **Framer Motion**: Animation library for React.
