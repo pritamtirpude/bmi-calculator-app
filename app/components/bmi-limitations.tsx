@@ -8,6 +8,14 @@ import iconRace from "@/public/assets/images/icon-race.svg";
 import rightCurve from "@/public/assets/images/pattern-curved-line-right.svg";
 import Image from "next/image";
 import useMediaQuery from "@/utils/useMediaQuery";
+import { motion } from "framer-motion";
+import {
+  limitationCardAnim,
+  limitationCardParaAnim,
+  limitationCardTitleAnim,
+  limitationLeftAnim,
+} from "@/utils/animation";
+import { cn } from "@/utils/util";
 
 function BMILimitaion() {
   const { matches } = useMediaQuery("(min-width: 600px)");
@@ -19,7 +27,10 @@ function BMILimitaion() {
           <Image src={rightCurve} alt="left curve" />
         </div>
       )}
-      <div className="text-center md:col-span-2 lg:col-span-3 lg:text-start">
+      <motion.div
+        {...limitationLeftAnim}
+        className="text-center md:col-span-2 lg:col-span-3 lg:text-start"
+      >
         <h6 className="text-5xl font-semibold text-gunmetal">
           Limitations of BMI
         </h6>
@@ -29,66 +40,74 @@ function BMILimitaion() {
           their BMI outcomes, and in certain cases, the measurement may not be
           beneficial to use.
         </p>
-      </div>
-      <div className="rounded-2xl bg-white p-8 drop-shadow-2xl md:col-start-1 lg:col-span-3 lg:col-start-4">
-        <div className="flex items-center gap-4">
-          <Image src={iconGender} alt="icon gender" />
-          <h6 className="text-xl font-semibold text-gunmetal">Gender</h6>
-        </div>
-        <p className="mt-4 max-w-none text-base  text-darkElectricBlue">
-          The development and body fat composition of girls and boys vary with
-          age. Consequently, a child&apos;s age and gender are considered when
-          evaluating their BMI.
-        </p>
-      </div>
-
-      <div className="rounded-2xl bg-white p-8 drop-shadow-2xl md:col-start-2 lg:col-span-2 lg:col-start-3 lg:row-start-2">
-        <div className="flex items-center gap-4">
-          <Image src={iconAge} alt="icon age" />
-          <h6 className="text-xl font-semibold text-gunmetal">Age</h6>
-        </div>
-        <p className="mt-4 max-w-none text-base text-darkElectricBlue">
-          In aging individuals, increased body fat and muscle loss may cause BMI
-          to underestimate body fat content.
-        </p>
-      </div>
-
-      <div className="rounded-2xl bg-white p-8 drop-shadow-2xl lg:col-span-4 lg:row-start-2">
-        <div className="flex items-center gap-4">
-          <Image src={iconMuscle} alt="icon muscle" />
-          <h6 className="text-xl font-semibold text-gunmetal">Muscle</h6>
-        </div>
-        <p className="mt-4 max-w-none text-base text-darkElectricBlue">
-          BMI may misclassify muscular individuals as overweight or obese, as it
-          doesn&apos;t differentiate muscle from fat.
-        </p>
-      </div>
-
-      <div className="rounded-2xl bg-white p-8 drop-shadow-2xl lg:col-span-2 lg:col-start-2 lg:row-start-3">
-        <div className="flex items-center gap-4">
-          <Image src={iconPregnancy} alt="icon pregnancy" />
-          <h6 className="text-xl font-semibold text-gunmetal">Pregnancy</h6>
-        </div>
-        <p className="mt-4 max-w-none text-base text-darkElectricBlue">
-          Expectant mothers experience weight gain due to their growing baby.
-          Maintaining a healthy pre-pregnancy BMI is advisable to minimise
-          health risks for both mother and child.
-        </p>
-      </div>
-
-      <div className="rounded-2xl bg-white p-8 drop-shadow-2xl md:col-span-2 md:mx-auto md:max-w-[330px]   lg:col-start-4 lg:row-start-3">
-        <div className="flex items-center gap-4">
-          <Image src={iconRace} alt="icon race" />
-          <h6 className="text-xl font-semibold text-gunmetal">Race</h6>
-        </div>
-        <p className="mt-4 max-w-none text-base text-darkElectricBlue">
-          Certain health concerns may affect individuals of some Black and Asian
-          origins at lower BMIs than others. To learn more, it is advised to
-          discuss this with your GP or practice nurse.
-        </p>
-      </div>
+      </motion.div>
+      {data.map((item, index) => (
+        <motion.div
+          {...limitationCardAnim(index)}
+          key={item.title}
+          className={cn(
+            "rounded-2xl bg-white p-8 drop-shadow-2xl ",
+            index === 0 && "md:col-start-1 lg:col-span-3 lg:col-start-4",
+            index === 1 &&
+              "md:col-start-2 lg:col-span-2 lg:col-start-3 lg:row-start-2",
+            index === 2 && "lg:col-span-4 lg:row-start-2",
+            index === 3 && "lg:col-span-2 lg:col-start-2 lg:row-start-3",
+            index === 4 &&
+              "md:col-span-2 md:mx-auto md:max-w-[330px] lg:col-start-4 lg:row-start-3"
+          )}
+        >
+          <motion.div
+            {...limitationCardTitleAnim(index)}
+            className="flex items-center gap-4"
+          >
+            <Image src={item.icon} alt={item.title} />
+            <h6 className="text-xl font-semibold text-gunmetal">
+              {item.title}
+            </h6>
+          </motion.div>
+          <motion.p
+            {...limitationCardParaAnim(index)}
+            className="mt-4 max-w-none text-base  text-darkElectricBlue"
+          >
+            {item.description}
+          </motion.p>
+        </motion.div>
+      ))}
     </section>
   );
 }
+
+const data = [
+  {
+    title: "Gender",
+    icon: iconGender,
+    description:
+      "The development and body fat composition of girls and boys vary with age. Consequently, a child&apos;s age and gender are considered when evaluating their BMI.",
+  },
+  {
+    title: "Age",
+    icon: iconAge,
+    description:
+      "In aging individuals, increased body fat and muscle loss may cause BMI to underestimate body fat content.",
+  },
+  {
+    title: "Muscle",
+    icon: iconMuscle,
+    description:
+      "BMI may misclassify muscular individuals as overweight or obese, as it doesn&apos; differentiate muscle from fat.",
+  },
+  {
+    title: "Pregnancy",
+    icon: iconPregnancy,
+    description:
+      "Expectant mothers experience weight gain due to their growing baby.Maintaining a healthy pre-pregnancy BMI is advisable to minimise health risks for both mother and child.",
+  },
+  {
+    title: "Race",
+    icon: iconRace,
+    description:
+      "Certain health concerns may affect individuals of some Black and Asian origins at lower BMIs than others. To learn more, it is advised to discuss this with your GP or practice nurse.",
+  },
+];
 
 export default BMILimitaion;

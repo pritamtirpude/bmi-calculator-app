@@ -3,6 +3,9 @@
 import { FormEvent, useState } from "react";
 import { cn } from "@/utils/util";
 import { motion } from "framer-motion";
+import MetricInput from "./metric-input";
+import ImperialInput from "./imperial-input";
+import { heroRightAnim } from "@/utils/animation";
 
 function BMIInput() {
   const [metric, setMetric] = useState(true);
@@ -63,6 +66,9 @@ function BMIInput() {
   return (
     <motion.div
       layout
+      variants={heroRightAnim}
+      initial="hidden"
+      animate="show"
       className="size-full max-w-xl flex-1 rounded-2xl bg-white p-8 shadow-lg md:max-w-none"
     >
       <motion.h2 layout className="text-2xl font-semibold text-gunmetal">
@@ -117,120 +123,25 @@ function BMIInput() {
             </motion.div>
           </div>
           {metric && (
-            <motion.div
-              layout
-              className="mt-8 flex flex-col items-center gap-6  md:flex-row lg:flex-row"
-            >
-              <div className="relative flex flex-col gap-2">
-                <label
-                  htmlFor="height"
-                  className="text-sm capitalize text-[#5E6E85]"
-                >
-                  height
-                </label>
-                <span className="absolute right-6 top-16 -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold text-colorBlue">
-                  cm
-                </span>
-                <input
-                  type="number"
-                  value={centimeter}
-                  onChange={(e) => setCentimeter(e.target.value)}
-                  className="w-full rounded-2xl border border-darkElectricBlue px-6 py-5 text-2xl focus:border-colorBlue focus:outline-none"
-                  name="height"
-                  placeholder="0"
-                />
-              </div>
-              <div className="relative flex flex-col gap-2">
-                <label
-                  htmlFor="weight"
-                  className="text-sm capitalize text-[#5E6E85]"
-                >
-                  weight
-                </label>
-                <span className="absolute right-6 top-16 -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold text-colorBlue">
-                  kg
-                </span>
-                <input
-                  type="number"
-                  value={kilogram}
-                  onChange={(e) => setKilogram(e.target.value)}
-                  className="w-full rounded-2xl border border-darkElectricBlue px-6 py-5 text-2xl focus:border-colorBlue focus:outline-none"
-                  name="weight"
-                  placeholder="0"
-                />
-              </div>
-            </motion.div>
+            <MetricInput
+              centimeter={centimeter}
+              setCentimeter={setCentimeter}
+              kilogram={kilogram}
+              setKilogram={setKilogram}
+            />
           )}
 
           {imperial && (
-            <motion.div layout className="mt-8 flex flex-col gap-6">
-              <div className="flex items-center gap-6">
-                <div className="relative flex-1">
-                  <label
-                    htmlFor="height"
-                    className="text-sm capitalize text-[#5E6E85]"
-                  >
-                    height
-                  </label>
-                  <span className="absolute right-6 top-[70px] -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold text-colorBlue">
-                    ft
-                  </span>
-                  <input
-                    value={feet}
-                    onChange={(e) => setFeet(e.target.value)}
-                    type="number"
-                    className="mt-2 w-full rounded-2xl border border-darkElectricBlue px-6 py-5 text-2xl focus:border-colorBlue focus:outline-none"
-                    placeholder="0"
-                  />
-                </div>
-
-                <div className="relative mt-auto flex-1">
-                  <span className="absolute right-6 top-9 -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold text-colorBlue">
-                    in
-                  </span>
-                  <input
-                    value={inches}
-                    onChange={(e) => setInches(e.target.value)}
-                    type="number"
-                    className="w-full rounded-2xl border border-darkElectricBlue px-6 py-5 text-2xl focus:border-colorBlue focus:outline-none"
-                    placeholder="0"
-                  />
-                </div>
-              </div>
-              <div className="flex items-center gap-6">
-                <div className="relative flex-1">
-                  <label
-                    htmlFor="height"
-                    className="text-sm capitalize text-[#5E6E85]"
-                  >
-                    weight
-                  </label>
-                  <span className="absolute right-6 top-[68px] -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold text-colorBlue">
-                    st
-                  </span>
-                  <input
-                    value={stones}
-                    onChange={(e) => setStones(e.target.value)}
-                    type="number"
-                    className="mt-2 w-full rounded-2xl border border-darkElectricBlue px-6 py-5 text-2xl focus:border-colorBlue focus:outline-none"
-                    placeholder="0"
-                  />
-                </div>
-
-                <div className="relative mt-auto flex-1">
-                  <span className="absolute right-1 top-[38px] -translate-x-1/2 -translate-y-1/2 text-2xl font-semibold text-colorBlue lg:right-6">
-                    lbs
-                  </span>
-                  <input
-                    value={pounds}
-                    onChange={(e) => setPounds(e.target.value)}
-                    type="number"
-                    className="w-full rounded-2xl border border-darkElectricBlue px-6 py-5 text-2xl focus:border-colorBlue focus:outline-none"
-                    placeholder="0"
-                  />
-                </div>
-              </div>
-            </motion.div>
+            <ImperialInput
+              feet={feet}
+              setFeet={setFeet}
+              inches={inches}
+              setInches={setInches}
+              stones={stones}
+              setStones={setStones}
+              pounds={pounds}
+              setPounds={setPounds}
+            />
           )}
 
           {bmiValue ? (
